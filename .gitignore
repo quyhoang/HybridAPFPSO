@@ -1,0 +1,8 @@
+#ignore image files
+*.jpg
+*.png
+*.emf
+*.fig
+#ignore dump files
+*.asv
+

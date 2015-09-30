@@ -1,0 +1,9 @@
+noParticle = 15
+maxStep = 100
+range = 1
+upLimit_1 = 50 
+dwLimit_1 = -50 
+upLimit_2 = 50
+dwLimit_2 = -50 
+veloScale = 2
+commuRangeRatio = 5

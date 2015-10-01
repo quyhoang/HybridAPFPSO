@@ -6,9 +6,11 @@ function setup(objectiveFunction)
 global noParticle range spaceSize vLimitX vLimitY maxStep commuRange ...
     dwLimit_1 upLimit_1 dwLimit_2 upLimit_2 w c1 c2 sensingRange swarm velo...
     fit swarmX swarmY gBest gBestVal pBest pBestVal BestFitnessEver MeanFitnessEver...
-    up dw gBestIndex FF
+    up dw gBestIndex FF lengkeng
 
 % load('randomGeneratorSeed.mat'); % load random generator configuration - the process is no longer stochastic.
+
+lengkeng = 0; %there is no collision initially
 
 if strcmp(objectiveFunction,'realLuna1')
     load('getValueAVL1XMAMDG.mat');
@@ -21,7 +23,7 @@ end
 k = fopen('initialize.txt');
 
 noParticle = fscanf(k,'noParticle = %d\n'); % number of particles 
-% assert(noParticle > 3, 'Robots are inexpensive now, what prevents you from purchasing more than four of them?!');
+assert(noParticle > 3, 'Robots are inexpensive now, what prevents you from purchasing more than four of them?!');
 maxStep = fscanf(k,'maxStep = %d\n'); % number of iterations
 range = fscanf(k,'range = %d\n'); % physical radius of a particle
 sensingRange = range*ones(1,noParticle);

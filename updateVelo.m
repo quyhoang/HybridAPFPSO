@@ -1,7 +1,7 @@
 function updateVelo()
 % UPDATE VELOCITY //////////////////////////////////////////
 
-global step w c1 c2 swarm velo gBest pBest staticObs 
+global step w c1 c2 swarm velo gBest pBest staticObs lengkeng
 
 % % Conventional PSO velocity
 % velo = w(step)*velo + c1(step)*rand*(pBest-swarm) + c2(step)*rand*(gBest-swarm);
@@ -15,5 +15,9 @@ global step w c1 c2 swarm velo gBest pBest staticObs
 
 % novelAPF
 novelAPF();
+
+if lengkeng
+    return;
+end
 
 end

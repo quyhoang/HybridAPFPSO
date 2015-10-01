@@ -105,7 +105,8 @@ switch objectiveFunction
         load('getValue87517M56FG.mat');
         
     otherwise
-        disp('Invalid objectiveFunction!');
+%         assert(1 > 3,'Please choose a valid objective function. See readme.txt for more details.');
+%         disp('Invalid objectiveFunction!');
         return
 end
 

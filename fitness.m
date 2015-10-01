@@ -153,9 +153,11 @@ switch objectiveFunction
             sub(i) = FF(swarm(1,i),swarm(2,i));
         end    
         
-    otherwise
-        disp('Invalid objectiveFunction!');
-        return
+    otherwise % the objective function is not in the cases above
+        str = objectiveFunction;
+        assert(1 > 3,['Please check for dictation mistake and make sure that you enter a valid objective function. Your input: ' str ' is not supported. See readme.txt for more details.']);
+%         disp('Invalid objectiveFunction!');
+%         return
 end
 
 %  case 'realLuminaire1' % AVG_1XL_AM_DG.ies

@@ -7,7 +7,7 @@ function conver = HBPSO(objectiveFunction)
 tic
 
 % INITIALIZATION
-global maxStep step swarm convergeStep lambda2 
+global maxStep step swarm convergeStep lambda2 lengkeng
 convergeStep = 0;
 
 clc; close all; % clear all; % clear previous data, clear 
@@ -18,6 +18,11 @@ setup(objectiveFunction)
 % SEARCHING
 for step = 1:maxStep
     updateVelo(); % update velocity
+%     
+%     if lengkeng
+%         break;
+%     end
+    
     limitSpeed(); % Check speed limit
     updatePosition(); % update position
     calculateAlgebraicConnectivity();
@@ -27,11 +32,19 @@ for step = 1:maxStep
     getData(newFit); % Collect data to visualize results
 
     if ~convergeStep && (lambda2(step) > 0) 
-        convergeStep = step
+        convergeStep = step;
         conver = convergeStep;
 %         break;
     end
 end
+
+lengkeng
+% if lengkeng
+%     conver = 2*maxStep - step
+% end
+    
+
+
 
 toc
 

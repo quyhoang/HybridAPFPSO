@@ -1,7 +1,7 @@
 function novelAPF()
 % velocity in Hybrid APSO algorithm
 
-global step w range swarm velo gBest pBest staticObs 
+global step w range swarm velo gBest pBest staticObs lengkeng
 
 s = size(swarm);
 z = zeros(s);
@@ -19,6 +19,12 @@ for boid1 = 1:s(2)
     for boid2 = 1:s(2)
         if boid2 ~= boid1
             r12 = r(swarm(:,boid1),swarm(:,boid2));
+            % return if there is a collision
+            if r12 < 2*range 
+                lengkeng = lengkeng+1;
+%                 return; 
+            end
+            
             if r12 < rSeparation
                 magnitude = Fmax - k*r12^2;
 				connect = swarm(:,boid1) - swarm(:,boid2);
@@ -30,12 +36,18 @@ for boid1 = 1:s(2)
     end
     
     % experimental: add random number to forces
-    G = 3;
+    G = 7;
     for obs = 1:a(2)
         r12 = r(swarm(:,boid1),staticObs(:,obs));
-        if r12 < rSeparation+2
+%         return if there is a collision
+            if r12 < 5 
+                lengkeng = lengkeng + 1;
+%                 return; 
+            end
+        if r12 < rSeparation+10
 %                 m = rand;
 				magnitude =  G/(r12-5)^2;
+%                 magnitude = G*sigmoid((-r12-12));
                 connect = swarm(:,boid1) - staticObs(:,obs);
 				vX = magnitude/r12*connect(1,1);
 				vY = magnitude/r12*connect(2,1);
@@ -81,4 +93,3 @@ end
 velo = w(step)*velo + vSeparation + vCognitive + vSocial;
 
 end
-

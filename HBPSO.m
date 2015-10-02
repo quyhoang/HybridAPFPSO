@@ -44,8 +44,8 @@ end
 % tic
 % toc
 
-% visualize(objectiveFunction);
-% showConnectivity();
-% showResult();
+visualize(objectiveFunction);
+showConnectivity();
+showResult();
 
 end

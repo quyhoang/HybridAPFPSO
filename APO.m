@@ -21,6 +21,7 @@ t_populio = 500*rand(4,6);
 % concatenate the two sets of position
 populio = [populio,t_populio];
 
+
 % evaluate adequacy of the positions
 adequo = apt(populio);
 
@@ -37,7 +38,7 @@ gBesto = repmat(populio(:,indeo),1,size(populio,2));
 
 
 % initialize population velocity
-iterio = 100; % number of iteration
+iterio = 20; % number of iteration
 
 %     set parameters
 inertio = linspace(1,.5,iterio);
@@ -78,7 +79,7 @@ for i=1:iterio
     
 end
 
-save('config.mat','config');
+save('configRandom.mat','config');
 [extremum,indexo] = min(pAdequo);
 argumentum = populio(:,indexo);
 

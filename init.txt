@@ -1,0 +1,2 @@
+noParticle maxStep range upLimit_1 dwLimit_1 upLimit_2 dwLimit_2 veloScale commuRangeRatio
+15 100 1 50 -50 50 -50 2 5

@@ -1,10 +1,8 @@
-function conver = HBPSO(objectiveFunction)
+function conver = HBPSO(objectiveFunction,parameter)
 % SIMULATING HYBRID BOIDS-PSO ALGORITHM FOR MULTI-ROBOT SYSTEMS IN UNKNOWN ENVIRONMENT EXPLORATION
 % AUTHOR: HOANG ANH QUY
 % SUPERVISOR: PHAM MINH TRIEN, PhD.
 % VNU-UET | MAY 2015
-
-tic
 
 % INITIALIZATION
 global maxStep step swarm convergeStep lambda2 lengkeng
@@ -17,12 +15,7 @@ setup(objectiveFunction)
 
 % SEARCHING
 for step = 1:maxStep
-    updateVelo(); % update velocity
-%     
-%     if lengkeng
-%         break;
-%     end
-    
+    novelAPF(parameter); %     updateVelo(); % update velocity
     limitSpeed(); % Check speed limit
     updatePosition(); % update position
     calculateAlgebraicConnectivity();
@@ -31,25 +24,28 @@ for step = 1:maxStep
     updateGlobalBest(newFit); % update global best
     getData(newFit); % Collect data to visualize results
 
-    if ~convergeStep && (lambda2(step) > 0) 
+    if ~lambda2(step)
+        convergeStep = 0;
+    elseif ~convergeStep && (lambda2(step) > 0) 
         convergeStep = step;
-        conver = convergeStep;
 %         break;
     end
 end
 
-lengkeng
-% if lengkeng
-%     conver = 2*maxStep - step
-% end
-    
+if lengkeng
+    conver = maxStep + lengkeng;
+elseif ~convergeStep
+    conver = 5*maxStep;
+else
+    conver = convergeStep;
+end
 
+% conver = convergeStep;
+% tic
+% toc
 
-
-toc
-
-visualize(objectiveFunction);
-showConnectivity();
-showResult();
+% visualize(objectiveFunction);
+% showConnectivity();
+% showResult();
 
 end

@@ -1,4 +1,4 @@
-function novelAPF()
+function novelAPF(parameter)
 % velocity in Hybrid APSO algorithm
 
 global step w range swarm velo gBest pBest staticObs lengkeng commuRange
@@ -13,7 +13,7 @@ density = zeros(1,s(2));
 
 rSeparation = 6*range;
 
-Fmax = 4;
+Fmax = parameter(1);
 k = Fmax/rSeparation^2;
 % Update vSeparation
 for boid1 = 1:s(2)
@@ -43,7 +43,7 @@ for boid1 = 1:s(2)
     end
     
     % experimental: add random number to forces
-    G = 7;
+    G = parameter(2);
     for obs = 1:a(2)
         r12 = r(swarm(:,boid1),staticObs(:,obs));
 %         return if there is a collision
@@ -66,7 +66,7 @@ for boid1 = 1:s(2)
 end
 
 % Update vCognitive 
-cognitoMax = 1;
+cognitoMax = parameter(3);
 rpBest = r(swarm,pBest);
 for boid1 = 1:s(2)
     r12 = rpBest(boid1);
@@ -82,7 +82,7 @@ for boid1 = 1:s(2)
 end
 
 % Update vSocial
-socioMax = 3;
+socioMax = parameter(4);
 rgBest = r(swarm,gBest);
 for boid1 = 1:s(2) 
     r12 = rgBest(boid1);
@@ -99,8 +99,8 @@ end
 
 density = sigmoid(-density+3);
 
-% velo = [density;density].*velo + vSeparation + vCognitive + vSocial;
-velo = w(step).*velo + vSeparation + vCognitive + vSocial;
+velo = [density;density].*velo + vSeparation + vCognitive + vSocial;
+% velo = w(step).*velo + vSeparation + vCognitive + vSocial;
 
 
 end

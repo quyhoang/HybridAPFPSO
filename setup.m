@@ -4,7 +4,7 @@ function setup(objectiveFunction)
 global noParticle range spaceSize vLimitX vLimitY maxStep commuRange ...
     dwLimit_1 upLimit_1 dwLimit_2 upLimit_2 sensingRange swarm velo...
     fit swarmX swarmY gBest gBestVal pBest pBestVal BestFitnessEver MeanFitnessEver...
-    up dw gBestIndex FF lengkeng staticObs t_reInit
+    up dw gBestIndex FF lengkeng staticObs
 
 % read configuration file
 filename = 'init.txt';
@@ -50,9 +50,12 @@ end
 staticObs = [-30 -20 -5 30; -30 30 -5 20];
 
 % initialize swarm
-swarm = dw + rand(2,noParticle).*spaceSize;
-reInitSwarm();
- 
+swarm = initSwarm(noParticle);
+% swarm = dw + rand(2,noParticle).*spaceSize;
+% swarm = 10*randn(2,noParticle);
+% swarm = randi([-49 49],2,15);
+% reInitSwarm();
+% 
 % if noParticle == 15
 %     load('swarm.mat')
 % elseif noParticle == 10

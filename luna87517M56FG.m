@@ -23,12 +23,14 @@ d = -50:0.1:50;
 [xx,yy] = meshgrid(d,d);
 
 zz = griddata(xReal,yReal,value,xx,yy,'natural');
+figure;
 contourf(xx,yy,zz);
+saveas(gcf,'875','emf');
 % surf(xq,yq,vq);
 % shading interp
-
-F = scatteredInterpolant(xReal',yReal', value');
-save('getValue87517M56FG.mat','F','xx','yy','zz');
+% 
+% F = scatteredInterpolant(xReal',yReal', value');
+% save('getValue87517M56FG.mat','F','xx','yy','zz');
 
 
 

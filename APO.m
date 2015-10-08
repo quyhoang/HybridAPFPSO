@@ -5,23 +5,23 @@ tic
 
 % initialize population position -------------------------------
 
-% read accepted position from file
-filename = 'acceptedConfig.txt';
-delimiterIn = ' ';
-headerlinesIn = 1;
-A = importdata(filename,delimiterIn,headerlinesIn);
-% to get data in A
-% A.colheaders{1, k})
-% A.data(:, k))
-populio = (A.data)';
+% % read accepted position from file
+% filename = 'acceptedConfig.txt';
+% delimiterIn = ' ';
+% headerlinesIn = 1;
+% A = importdata(filename,delimiterIn,headerlinesIn);
+% % to get data in A
+% % A.colheaders{1, k})
+% % A.data(:, k))
+% populio = (A.data)';
+% 
+% % generate random position
+% t_populio = 500*rand(4,6);
+% 
+% % concatenate the two sets of position
+% populio = [populio,t_populio];
 
-% generate random position
-t_populio = 500*rand(4,6);
-
-% concatenate the two sets of position
-populio = [populio,t_populio];
-
-
+populio = randi([1 10],3,10);
 % evaluate adequacy of the positions
 adequo = apt(populio);
 
@@ -38,7 +38,7 @@ gBesto = repmat(populio(:,indeo),1,size(populio,2));
 
 
 % initialize population velocity
-iterio = 20; % number of iteration
+iterio = 10; % number of iteration
 
 %     set parameters
 inertio = linspace(1,.5,iterio);
@@ -79,7 +79,7 @@ for i=1:iterio
     
 end
 
-save('configRandom.mat','config');
+save('config3.mat','config');
 [extremum,indexo] = min(pAdequo);
 argumentum = populio(:,indexo);
 
